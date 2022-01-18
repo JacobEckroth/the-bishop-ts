@@ -1,0 +1,56 @@
+---
+# Please read this carefully
+# Each mandatory section will be marked
+# With a comment stating "MANDATORY"
+# If an item which has sub items is marked MANDATORY, please fill out all subsections within
+# unless marked otherwise
+# Please fill out all mandatory sections
+# Please fill out all blank sections that you find necessary
+# Note that some files have some information provided in the template
+# This information should not be changed
+
+# MANDATORY
+apiVersion: #apps/v1
+
+# MANDATORY
+kind: deployment
+
+# MANDATORY
+metadata:
+  name: the-bishop-project
+
+# MANDATORY
+spec:
+  selector:
+    matchLabels:
+      app:  the-bishop
+      tier: backend
+      # role:
+
+  replicas: 1
+
+  template:
+    metadata:
+      labels:
+        app:  the-bishop
+        tier: backend
+        # role:
+
+    spec:
+      containers:
+        - name:  the-bishop
+          image: detjensrobert/the-bishop
+
+          resources:
+            requests:
+              cpu:
+              memory:
+
+          # NOT MANDATORY
+          # please uncomment for use
+          #env:
+          #- name:
+          #  value:
+          #
+          #  ports:
+          #  - containerPort:
