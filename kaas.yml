@@ -41,11 +41,6 @@ spec:
         - name:  the-bishop
           image: detjensrobert/the-bishop
 
-          resources:
-            requests:
-              cpu:
-              memory:
-
           # NOT MANDATORY
           # please uncomment for use
           #env:
