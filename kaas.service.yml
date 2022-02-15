@@ -1,0 +1,34 @@
+---
+# Please read this carefully
+# Each mandatory section will be marked
+# With a comment stating "MANDATORY"
+# Please fill out all mandatory sections
+# Plese fill out all blank sections that you find necessary
+# Note that some files have some information provided in the template
+# This information should not be changed
+
+# MANDATORY
+apiVersion: v1
+
+# MANDATORY
+kind: Service
+
+# MANDATORY
+metadata:
+  name: the-bishop-service
+
+  labels:
+    app: the-bishop
+    # tier:
+    # role:
+
+# MANDATORY
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+
+  selector:
+    app: the-bishop
+    # tier:
+    # role:

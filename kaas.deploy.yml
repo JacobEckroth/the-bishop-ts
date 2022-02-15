@@ -17,13 +17,13 @@ kind: deployment
 
 # MANDATORY
 metadata:
-  name: the-bishop-project
+  name: the-bishop-deployment
 
 # MANDATORY
 spec:
   selector:
     matchLabels:
-      app:  the-bishop
+      app: the-bishop
       tier: backend
       # role:
 
@@ -32,7 +32,7 @@ spec:
   template:
     metadata:
       labels:
-        app:  the-bishop
+        app: the-bishop
         tier: backend
         # role:
 
@@ -43,9 +43,9 @@ spec:
 
           # NOT MANDATORY
           # please uncomment for use
-          #env:
-          #- name:
-          #  value:
-          #
-          #  ports:
-          #  - containerPort:
+          # env:
+          #   - name:
+          #     value:
+
+          # ports:
+          #   - containerPort:
