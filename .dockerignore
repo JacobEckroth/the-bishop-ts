@@ -1,4 +1,4 @@
-.git
-.github
-vendor
-*.yml
+node_modules/
+Dockerfile
+.dockerignore
+compose.yml

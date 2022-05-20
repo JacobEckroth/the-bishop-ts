@@ -1,33 +1,36 @@
-# The Bishop bot
+# The Bishop (Typescript Edition)
 
-Discord bot for a server I run. Does joke things and role moderation.
+## Initial Setup
 
-## Setup
+When first installing, run `npm install`.
+After that, run `tsc` to run the typescript compilation. This should create a `build/` folder.
+To run the bot, once `tsc` has been run, run the command `node build/src/Bot.js`
 
-1. Copy `config.example.yml` to `config.yml`
-2. Replace the placeholder token
-3. Copy `roles.example.yml` to `roles.yml`
-4. Add the desired `rolename: roleid` pairs to `roles.yml`
-
-## Run with Docker
-
-```sh
-# build image
-docker build -t detjensrobert/the-bishop .
-# run container as daemon with config files
-docker run -d --rm --name the-bishop -v $(pwd)/config.yml:/app/config.yml \
-   -v $(pwd)/roles.yml:/app/roles.yml detjensrobert/the-bishop
+### Discord Token
+Bot token must be added in a file called token.json in the home directory. The file should look like
+```JSON
+{
+    "token": "asdfsadfsdadfasfsa"
+}
 ```
+Token can be generated from the Discord Developer website. 
 
-## Run locally
+### Praise Count
+There is a file in the home directory called `praisecount.json`. When initializing the bot, please update this file to have your desired
+starting amount of praises. 
 
-1. Install Mathematical gem dependencies:
-   - `pacman -Sy cmake base-devel python libffi libxml2 gdk-pixbuf2 cairo pango jbigkit`
-   - `dnf install ruby-devel gcc-c++ cmake bison flex libffi-devel libxml2-devel glib2-devel cairo-devel cairo-gobject-devel pango-devel gdk-pixbuf2-devel jbigkit-devel libwebp-devel`
-   - `apt install cmake build-essential bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx`
-2. Install required gems: `bundle install`
-3. Run the bot: `bundle exec ruby main.rb`
+### Config File
+In the file `config.json` there are several changable settings, including the colors for success and failure messages. 
+Just be sure to maintain the same file structure within config.json.
 
------
+## Dockerizing
+A `compose.yml` file is provided for this bot. To run using docker please use `docker-compose up`.
+If you want to make sure it is rebuilt from changes you made, use `docker-compose up --build`. Typically you don't want to be 
+using docker while testing, as it is a bit tedious, but if you need to you can do this.
 
-*Created by [detjensrobert](https://github.com/detjensrobert) / @WholeWheatBagels#3140*
+
+## Inviting to Server
+Use this link: https://discord.com/api/oauth2/authorize?client_id=977105743784341504&permissions=8&scope=bot%20applications.commands
+To change permissions, get appropriate permissions and update the value in permissions={permValue} query-string parameter.
+It currently has admin permissions for testing.
+
