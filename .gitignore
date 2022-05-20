@@ -4,3 +4,4 @@ token.json
 build/
 configs/config.yml
 configs/roles.yml
+configs/praisecount.yml

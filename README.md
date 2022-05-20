@@ -9,6 +9,18 @@ To run the bot in dev mode, once `tsc -w` has been run, open a new terimnal and 
 This will use nodemon, so it will watch for any changes in the js files. Therefore you should be able to change the .ts files,
 `tsc -w` will compile that to js, and then nodemon will restart the bot.
 
+## Config Setup
+The following files need to be created:
+configs/config.yml
+configs/roles.yml
+configs/praisecount.yml
+
+config.yml and roles.yml match the examples, just replace the template IDs with the actual IDs.
+Praisecount.yml is a file that looks like this:
+```yml 
+count: 5
+```
+
 ### Discord Token
 Bot token must be added in a file called token.json in the home directory. The file should look like
 ```JSON
