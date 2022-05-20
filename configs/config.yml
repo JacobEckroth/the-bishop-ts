@@ -1,0 +1,19 @@
+---
+token: "OTc3MTA1NzQzNzg0MzQxNTA0.GtBfDP.eHXLM2m-qKvIdKxyHbJjQlEpKSl0L1qgfeTnck"
+prefix: "!"
+colors:
+  success: "4CAF50"
+  error: "f44336"
+  info: "2196F3"
+  warn: "FFC107"
+roles: 
+  god: 1111
+  admin: 2222
+  botadmin: 977254658030600292
+  disciple: 977266171550265355
+class_categories:
+  100: 1111
+  200: 2222
+  300: 3333
+  400: 4444
+  500: 5555

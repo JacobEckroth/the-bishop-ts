@@ -1,10 +1,13 @@
 # The Bishop (Typescript Edition)
 
-## Initial Setup
+## Initial Setup / Testing
 
 When first installing, run `npm install`.
-After that, run `tsc` to run the typescript compilation. This should create a `build/` folder.
-To run the bot, once `tsc` has been run, run the command `node build/src/Bot.js`
+After that, run `tsc -w` to run the typescript compilation in watch mode. This should create a `build/` folder.
+It will also recompile any files that get changed.
+To run the bot in dev mode, once `tsc -w` has been run, open a new terimnal and run the command `npm run start`. Note that if you want the bot to NOT restart on changes, you can run `node build/src/Bot.js`
+This will use nodemon, so it will watch for any changes in the js files. Therefore you should be able to change the .ts files,
+`tsc -w` will compile that to js, and then nodemon will restart the bot.
 
 ### Discord Token
 Bot token must be added in a file called token.json in the home directory. The file should look like

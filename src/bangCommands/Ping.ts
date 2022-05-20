@@ -1,5 +1,4 @@
 import { Client, Message, MessageEmbed } from "discord.js";
-import path from "path";
 import { client } from "../Bot";
 import { BangCommand } from "../classes/BangCommand";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";

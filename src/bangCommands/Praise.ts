@@ -4,9 +4,9 @@ import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessag
 import config from "../config";
 import fs from "fs"
 import path from "path"
+import YAML from "yaml"
 
-
-const praiseFileName = path.resolve(__dirname,"../../../praisecount.json")
+const praiseFileName = path.resolve(__dirname,"../../../configs/praisecount.yml")
 const PRAISE_CHANNEL_ID = `695058230472081579`;
 export const Praise: BangCommand = {
     name: "praise",
@@ -21,15 +21,17 @@ export const Praise: BangCommand = {
         //     return;
         // }
         try{
-            const file = require(praiseFileName)
-            file.count += 1;
+            const data= fs.readFileSync(praiseFileName,{encoding:'utf8', flag:'r'});
+            const count= YAML.parse(data)   ;
+        
+            count.count += 1;
             //race condition time
-            fs.writeFile(praiseFileName,JSON.stringify(file),async function callback(err){
+            fs.writeFile(praiseFileName,YAML.stringify(count),async function callback(err){
                 if(err){
                     console.error(err);
 
                 }else{
-                const content = `*Praises x${file.count}*`
+                const content = `*Praises x${count.count}*`
                 const embed = new MessageEmbed().setDescription(content);
                 embed.title = ":pray: Praise be to Evan! :pray:";
                 embed.color = config.colors.success;

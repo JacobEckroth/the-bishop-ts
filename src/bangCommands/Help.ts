@@ -2,6 +2,7 @@ import { Client, Message } from "discord.js";
 import { BangCommands } from "../BangCommands";
 import { BangCommand } from "../classes/BangCommand";
 import { getCommaSeparatedAliases } from "../lib/aliases";
+import { messageSenderHasMatchingPerms } from "../lib/perms";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
 
 export const Help: BangCommand = {
@@ -13,7 +14,7 @@ export const Help: BangCommand = {
         ["what",true]
     ]),
     run: async(client: Client, message:Message)=>{
-       //first we check if there's more than just help
+       //first we check if there's more than just !help in the command.
         const found = message.content.match(/^\s*!help ([a-zA-Z0-9]*)\s*$/);    //matching to see if there's a second word.
         if(!found || found.length !==2){    //if this case, then they're just asking for the list of functions that can be called.
             let helpString = "**List of commands:**\n"
@@ -29,6 +30,7 @@ export const Help: BangCommand = {
             
             try{
                 await sendMessageToChannelMessageWasSentFrom(client,message,helpString);
+                return;
             }catch(err){
                 console.error(`Error in sending reply: ${err}`);
             }
@@ -44,19 +46,32 @@ export const Help: BangCommand = {
                     }
                 }
             }
-            if(!bangCommand){   //the command they want to get help for doesn't exist
-                await sendMessageToChannelMessageWasSentFrom(client,message,`The command \`${functionName}\` does not exist!`);
-               return;
-            }else{
-                let helpString = "";
-                helpString += `\`${bangCommand.name}\`: ${bangCommand.description}\n`
-                helpString += `Usage:\`${bangCommand.usage}\`\n`
-                if(bangCommand.aliases.size > 0){
-                    helpString += `Aliases: ${getCommaSeparatedAliases(bangCommand.aliases)}`
+            try{
+                if(!bangCommand){   //the command they want to get help for doesn't exist
+                   throw "No Command";
+                }else{
+                    //check if they have perms for this.
+                    if(messageSenderHasMatchingPerms(bangCommand,message)){
+                        let helpString = "";
+                        helpString += `\`${bangCommand.name}\`: ${bangCommand.description}\n`
+                        helpString += `Usage:\`${bangCommand.usage}\`\n`
+                        if(bangCommand.aliases.size > 0){
+                            helpString += `Aliases: ${getCommaSeparatedAliases(bangCommand.aliases)}`
+                        }
+                        await sendMessageToChannelMessageWasSentFrom(client,message,helpString)
+                        return;
+                    }else{  //Just like webservers we don't want to let people know the command exists
+                        throw "No Perms";
+                    }
+                   
+    
                 }
-                await sendMessageToChannelMessageWasSentFrom(client,message,helpString)
-
+            }catch(err){    //makes it so missing message is
+                console.error(`Help [command] error: ${err}`);
+                await sendMessageToChannelMessageWasSentFrom(client,message,`The command \`${functionName}\` does not exist!`);
+            
             }
+            
         }
        
    

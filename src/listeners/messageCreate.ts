@@ -3,14 +3,15 @@ import { Client, Message } from "discord.js";
 import { BangCommands } from "../BangCommands";
 import { getLatexUrl } from "../lib/latex";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
-
+import config from "../config";
 
 //messageCreate event is emitted when an interaction is created: https://discord.js.org/#/docs/discord.js/stable/class/Client?scrollTo=e-messageCreate
 export default (client: Client): void => {
     client.on("messageCreate", async (message: Message) => {
         //check if the first character is a !
-        const found = message.content.match(/^\s*!([a-zA-Z0-9]*)/)
+        const found = message.content.match(`^\s*${config.prefix}([a-zA-Z0-9]*)`)
         if (found) {
+
             await handleBangCommand(client, message, found[1]);
         } else {  //check for equations in the form of $$
             // render any latex math equations in message
@@ -22,7 +23,6 @@ export default (client: Client): void => {
 
             let equations = message.content.match(/(?:^|\s)\$([^ $].*)\$(?:$|\s)/)
             if (equations) {
-                console.log(equations[equations.length-1])
                 const url = await getLatexUrl(equations[equations.length - 1]); //only do the last one, just like the ruby bot does.
                 if (url) {
                     let sendMessage = { files: [url] }
@@ -52,10 +52,30 @@ const handleBangCommand = async (client: Client, message: Message, command: stri
 
 
 
+
+
     if (!bangCommand) {
 
         return;
     } else {
+        //check perms
+        if (bangCommand.perms) {
+            if (message.member) {
+                if (message.member.roles.cache.some(role => bangCommand!.perms!.has(Number(role.id)))) {
+                    bangCommand.run(client, message);
+                    return;
+                } else {
+                    console.error(`User: ${message.member.user.username} requested command ${bangCommand.name} which they do not have permissions to use.`)
+                    return; //we want to return if we can't find a role that matches the perms.
+                    //Note that this only gets called if  the bangCommand has perms and the message is sent by a member.
+
+                }
+
+            }
+
+        }
+
+        //gets run if the command has no perms, i.e. anyone can use it.
         bangCommand.run(client, message);
     }
 }

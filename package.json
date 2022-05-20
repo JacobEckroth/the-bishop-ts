@@ -33,6 +33,7 @@
     "dependencies": {
         "axios": "^0.27.2",
         "discord.js": "^13.7.0",
-        "ts-node": "^10.7.0"
+        "ts-node": "^10.7.0",
+        "yaml": "^2.1.0"
     }
 }

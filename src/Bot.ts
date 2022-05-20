@@ -2,7 +2,7 @@ import { Client} from "discord.js";
 import interactionCreate from "./listeners/interactionCreate";
 import messageCreate from "./listeners/messageCreate";
 import ready from "./listeners/ready";
-
+import config from "./config";
 
 //Discord client
 export const client = new Client({
@@ -15,8 +15,8 @@ export const client = new Client({
 async function initializeBot() {
     
     try{
-        const tokenFile = require('../../token.json');   //attempts to get token, throws Error if fails.
-        const token = tokenFile.token;
+       
+        const token = config.token;
         console.log("The Bishop is warming up...");
 
         //attaching listeners
