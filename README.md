@@ -22,12 +22,7 @@ count: 5
 ```
 
 ### Discord Token
-Bot token must be added in a file called token.json in the home directory. The file should look like
-```JSON
-{
-    "token": "asdfsadfsdadfasfsa"
-}
-```
+Bot token must be added into configs/config.yml file.
 Token can be generated from the Discord Developer website. 
 
 
