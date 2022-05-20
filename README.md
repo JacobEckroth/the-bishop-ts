@@ -30,13 +30,6 @@ Bot token must be added in a file called token.json in the home directory. The f
 ```
 Token can be generated from the Discord Developer website. 
 
-### Praise Count
-There is a file in the home directory called `praisecount.json`. When initializing the bot, please update this file to have your desired
-starting amount of praises. 
-
-### Config File
-In the file `config.json` there are several changable settings, including the colors for success and failure messages. 
-Just be sure to maintain the same file structure within config.json.
 
 ## Dockerizing
 A `compose.yml` file is provided for this bot. To run using docker please use `docker-compose up`.
