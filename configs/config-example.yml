@@ -1,5 +1,5 @@
 ---
-token: "OTc3MTA1NzQzNzg0MzQxNTA0.GtBfDP.eHXLM2m-qKvIdKxyHbJjQlEpKSl0L1qgfeTnck"
+token: "1111"
 prefix: "!"
 colors:
   success: "4CAF50"
@@ -9,8 +9,8 @@ colors:
 roles: 
   god: 1111
   admin: 2222
-  botadmin: 977254658030600292
-  disciple: 977266171550265355
+  botadmin: 3333
+  disciple: 4444
 class_categories:
   100: 1111
   200: 2222
