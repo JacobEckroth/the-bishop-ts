@@ -9,22 +9,22 @@ To run the bot in dev mode, once `tsc -w` has been run, open a new terimnal and 
 This will use nodemon, so it will watch for any changes in the js files. Therefore you should be able to change the .ts files,
 `tsc -w` will compile that to js, and then nodemon will restart the bot.
 
-### Discord Token
-Bot token must be added in a file called token.json in the home directory. The file should look like
-```JSON
-{
-    "token": "asdfsadfsdadfasfsa"
-}
+## Config Setup
+The following files need to be created:
+configs/config.yml
+configs/roles.yml
+configs/praisecount.yml
+
+config.yml and roles.yml match the examples, just replace the template IDs with the actual IDs.
+Praisecount.yml is a file that looks like this:
+```yml 
+count: 5
 ```
+
+### Discord Token
+Bot token must be added into configs/config.yml file.
 Token can be generated from the Discord Developer website. 
 
-### Praise Count
-There is a file in the home directory called `praisecount.json`. When initializing the bot, please update this file to have your desired
-starting amount of praises. 
-
-### Config File
-In the file `config.json` there are several changable settings, including the colors for success and failure messages. 
-Just be sure to maintain the same file structure within config.json.
 
 ## Dockerizing
 A `compose.yml` file is provided for this bot. To run using docker please use `docker-compose up`.
