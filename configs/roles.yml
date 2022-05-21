@@ -1,24 +1,47 @@
----
 general:
   allclasses:
-    id: 1111
+    id: "977375017891414106"
     title: All Classes
   alumni:
-    id: 2222
+    id: "2222"
     title: Alumni
   ecampus:
-    id: 3333
+    id: "3333"
     title: E-Campus
   gradstudent:
-    id: 4444
+    id: "4444"
     title: Graduate Stutent
   jobs:
-    id: 5555
+    id: "5555"
     title: Job-related Pings
 classes:
   cs100:
-    id: 1234
-    title: 'Example Class'
+    id: "1234"
+    title: Example Class
   cs200:
-    id: 2345
-    title: 'Another Example'
+    id: "2345"
+    title: Another Example
+  cs467:
+    id: "977383040017911800"
+    title: Online Capstone Project
+  cs468:
+    id: "977383453702115328"
+    title: Inclusive Design (hci)
+  cs469:
+    id: "977384046281785384"
+    title: Real-world Project Management In Computer Science
+  cs490:
+    id: "977384442576375871"
+    title: ""
+  cs491:
+    id: "977384721224974336"
+    title: Computer Science Skills For Simulation And Game Programming
+  cs444:
+    id: "977385141993361428"
+    title: Operating Systems II
+  cs344:
+    id: "977385201925779456"
+    title: Operating Systems I
+  cs261:
+    id: "977385240010063883"
+    title: Data Structures

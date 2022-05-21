@@ -1,9 +1,9 @@
 import { Client, Message, MessageEmbed } from "discord.js";
 import { client } from "../Bot";
 import { BangCommand } from "../classes/BangCommand";
+import { getConfig } from "../config";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
 import { getMsSince } from "../lib/timer";
-import config from "../config";
 
 export const Ping: BangCommand = {
     name: "ping",
@@ -15,7 +15,7 @@ export const Ping: BangCommand = {
         const content = `:watch: ${getMsSince(message.createdAt)}ms`;
         const embed = new MessageEmbed().setDescription(content);
         embed.title="Pong!";
-        embed.color = config.colors.success;    //nice happpy green success color
+        embed.color = getConfig().colors.success;    //nice happpy green success color
         try{
             await sendMessageToChannelMessageWasSentFrom(client,message,{embeds:[embed]})
           

@@ -1,10 +1,11 @@
 import { Client, Message, MessageEmbed} from "discord.js";
 import { BangCommand } from "../classes/BangCommand";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
-import config from "../config";
+
 import fs from "fs"
 import path from "path"
 import YAML from "yaml"
+import { getConfig } from "../config";
 
 const praiseFileName = path.resolve(__dirname,"../../../configs/praisecount.yml")
 const PRAISE_CHANNEL_ID = `695058230472081579`;
@@ -34,7 +35,7 @@ export const Praise: BangCommand = {
                 const content = `*Praises x${count.count}*`
                 const embed = new MessageEmbed().setDescription(content);
                 embed.title = ":pray: Praise be to Evan! :pray:";
-                embed.color = config.colors.success;
+                embed.color = getConfig().colors.success;
                 embed.thumbnail = {
                     url: 'https://media.discordapp.net/attachments/758182759683457035/758243415459627038/TempDorime.png'
                   }

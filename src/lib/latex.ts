@@ -4,7 +4,7 @@ import axios from "axios";
 const baseURL = 'https://latex2png.com'
 export async function getLatexUrl(latexString:string):Promise<string | null>{
   
-    console.log(latexString);
+  
     let payload = {
         "auth": {
             "user": "guest",
@@ -14,12 +14,18 @@ export async function getLatexUrl(latexString:string):Promise<string | null>{
         "resolution": 600,
         "color": "FFFFFF"
     }   
-   let res = await axios.post(`${baseURL}/api/convert`,payload)
-   let data = res.data;
-   if(data['result-code'] === 0){
-       return `${baseURL}${res.data.url}`;
-   }else{
-       console.error(`Error getting latex:`, res.data);
-       return null;
-   }
+    try{
+        let res = await axios.post(`${baseURL}/api/convert`,payload)
+        let data = res.data;
+        if(data['result-code'] === 0){
+            return `${baseURL}${res.data.url}`;
+        }else{
+            throw res.data;
+           
+        }
+    }catch(err){
+        console.error(`Error getting latex: ${err}`)
+        return null;
+    }
+  
 }

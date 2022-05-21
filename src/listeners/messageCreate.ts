@@ -1,15 +1,16 @@
 
 import { Client, Message } from "discord.js";
 import { BangCommands } from "../BangCommands";
+import { getConfig } from "../config";
 import { getLatexUrl } from "../lib/latex";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
-import config from "../config";
+
 
 //messageCreate event is emitted when an interaction is created: https://discord.js.org/#/docs/discord.js/stable/class/Client?scrollTo=e-messageCreate
 export default (client: Client): void => {
     client.on("messageCreate", async (message: Message) => {
         //check if the first character is a !
-        const found = message.content.match(`^\s*${config.prefix}([a-zA-Z0-9]*)`)
+        const found = message.content.match(`^\s*${getConfig().prefix}([a-zA-Z0-9]*)`)
         if (found) {
 
             await handleBangCommand(client, message, found[1]);

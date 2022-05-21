@@ -1,8 +1,9 @@
 import { Client} from "discord.js";
+import { getConfig } from "./config";
 import interactionCreate from "./listeners/interactionCreate";
 import messageCreate from "./listeners/messageCreate";
 import ready from "./listeners/ready";
-import config from "./config";
+
 
 //Discord client
 export const client = new Client({
@@ -16,7 +17,7 @@ async function initializeBot() {
     
     try{
        
-        const token = config.token;
+        const token = getConfig().token;
         console.log("The Bishop is warming up...");
 
         //attaching listeners
