@@ -1,6 +1,7 @@
 ---
 token: "1111"
 prefix: "!"
+church_id: "977950082819313734"
 colors:
   success: "4CAF50"
   error: "f44336"
