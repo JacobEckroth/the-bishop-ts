@@ -14,7 +14,7 @@ export const Newclass: BangCommand = {
     description: "Shows a list of all commands available or displays help for a specific command.",
     type: "CHAT_INPUT",
     usage: "Create a new class role and channel. [admin only]",
-    perms: new Map<number, boolean>([   //this command is only accessible to admins or botadmins.
+    perms: new Map<string, boolean>([   //this command is only accessible to admins or botadmins.
         [
             getConfig().roles.admin, true
         ],

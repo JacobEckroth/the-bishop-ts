@@ -15,6 +15,11 @@ export const Praise: BangCommand = {
     usage: "!praise",
     description: "Praise evan! (Only usable in 🙏-the-chapel)",
     type: "CHAT_INPUT",
+    channels: new Map<string,boolean>([
+        [
+            getConfig().church_channel_id,true
+        ]
+    ]),
     run: async (client: Client, message: Message) => {
 
         //Make it so the bot can only send messages in the requested channel.

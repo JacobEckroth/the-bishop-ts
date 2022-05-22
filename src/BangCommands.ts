@@ -6,8 +6,11 @@ import { Lug } from "./bangCommands/Lug";
 import { Newclass } from "./bangCommands/Newclass";
 import { Ping } from "./bangCommands/Ping";
 import { Praise } from "./bangCommands/Praise";
+import { Role } from "./bangCommands/Role";
 import { Yeet } from "./bangCommands/Yeet";
 import { BangCommand } from "./classes/BangCommand";
 
 
-export const BangCommands: BangCommand[] = [Help,Ping,Latex,Yeet,Lug,Praise,Newclass]
+//order matters here, don't change it without understanding ramifications
+//Mainly what happens when you run !help.
+export const BangCommands: BangCommand[] = [Help,Newclass,Ping,Latex,Praise,Yeet,Lug,Role]

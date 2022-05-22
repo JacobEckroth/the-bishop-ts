@@ -7,7 +7,8 @@ export interface BangCommand{
     type:string,
     usage:string,
     aliases:Map<string,boolean>,    //other names for the command
-    perms?:Map<number,boolean>,
-    channels?:number[], //the channels that these messages can be sent in.
+    perms?:Map<string,boolean>, //role IDs required to run command.
+    channels?:Map<string,boolean>,  //valid channel IDs
+
     run:(client:Client,message:Message)=>void;
 }

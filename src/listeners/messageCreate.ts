@@ -2,7 +2,9 @@
 import { Client, Message } from "discord.js";
 import { BangCommands } from "../BangCommands";
 import { getConfig } from "../config";
+import { messageIsInClassChannel, messageSenderInRightChannel } from "../lib/channel";
 import { getLatexUrl } from "../lib/latex";
+import { messageSenderHasMatchingPerms } from "../lib/perms";
 import { sendMessageToChannelMessageWasSentFrom } from "../lib/sendChannelMessage";
 
 
@@ -32,6 +34,29 @@ export default (client: Client): void => {
 
             }
 
+
+            if (message.member) {
+                //We check for Evan messages - All evan messages get reacted to with the 🙏
+                //(praise be btw)
+                if (message.member.roles.cache.some(role => role.id == getConfig().roles.god)) {
+                    message.react('🙏');
+                }
+                if(message.member.id == "337713063606353923" && !messageIsInClassChannel(message)){
+                    try{
+                        await message.react(':zachL:797961331101794344');   //awaits because we don't want right eye first.
+                        await message.react(':zachR:797961330929303583');
+                    }catch(err){
+                        console.error(`Error adding zach eyes :( ${err}`);
+                    }
+                 
+                }
+             
+
+
+            }
+
+
+
         }
 
     })
@@ -51,32 +76,24 @@ const handleBangCommand = async (client: Client, message: Message, command: stri
     }
 
 
-
-
-
-
     if (!bangCommand) {
 
         return;
     } else {
         //check perms
-        if (bangCommand.perms) {
-            if (message.member) {
-                if (message.member.roles.cache.some(role => bangCommand!.perms!.has(Number(role.id)))) {
-                    bangCommand.run(client, message);
-                    return;
-                } else {
-                    console.error(`User: ${message.member.user.username} requested command ${bangCommand.name} which they do not have permissions to use.`)
-                    return; //we want to return if we can't find a role that matches the perms.
-                    //Note that this only gets called if  the bangCommand has perms and the message is sent by a member.
+        if (messageSenderHasMatchingPerms(bangCommand, message) && messageSenderInRightChannel(bangCommand, message)) {
+            //check channel - Refactor into a differetn fucntion soon.
 
-                }
+            bangCommand.run(client, message);
+            return;
 
-            }
 
+
+        } else {
+            console.error(`User: ${message.member!.user.username} requested command ${bangCommand.name} which they do not have permissions to use, or they're in the wrong channel.`)
+            return; //we want to return if we can't find a role that matches the perms.
+            //Note that this only gets called if  the bangCommand has perms and the message is sent by a member.
         }
 
-        //gets run if the command has no perms, i.e. anyone can use it.
-        bangCommand.run(client, message);
     }
 }
