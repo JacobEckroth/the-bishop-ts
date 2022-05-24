@@ -17,9 +17,9 @@ export function listRoles(client: Client, message: Message) {
             { name: 'Class roles', value: `\`${Object.keys(roles.classes).sort().map(k => k.padEnd(7)).join(`\` \``)}\`` },
             {
                 name: "Slash commands:",
-                value: `\`!role list\`\n`
-                    + `\`!role add\`\n`
-                    + `\`!role remove\`\n`,
+                value: `\`/role list\`\n`
+                    + `\`/role add\`\n`
+                    + `\`/role remove\`\n`,
                 inline: true
             },
             {
@@ -33,4 +33,8 @@ export function listRoles(client: Client, message: Message) {
     );
     embed.color = config.colors.error;
     sendMessageToChannelMessageWasSentFrom(client, message, { embeds: [embed] });
+}
+
+export function showRoleSelector(client:Client,message:Message){
+    
 }

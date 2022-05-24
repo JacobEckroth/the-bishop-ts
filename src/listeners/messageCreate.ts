@@ -41,7 +41,7 @@ export default (client: Client): void => {
                 if (message.member.roles.cache.some(role => role.id == getConfig().roles.god)) {
                     message.react('🙏');
                 }
-                if(message.member.id == "337713063606353923" && !messageIsInClassChannel(message)){
+                if(message.member.id == "199396039357104128" && !messageIsInClassChannel(message)){ //ID here is Toxic_Zach's user id.
                     try{
                         await message.react(':zachL:797961331101794344');   //awaits because we don't want right eye first.
                         await message.react(':zachR:797961330929303583');

@@ -1,4 +1,5 @@
 import { Client } from "discord.js";
+import { registerRoleCommands } from "../commands/Role";
 import { Commands } from "../SlashCommands";
 
 //sets up a ready listener for the client
@@ -8,6 +9,8 @@ export default (client: Client): void => {
         if (!client.user || !client.application) {
             return;
         }
+        registerRoleCommands();
+
         await client.application.commands.set(Commands);    //setting up all slash commands.
         console.log(`${client.user.username} is online`);
     });

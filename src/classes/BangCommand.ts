@@ -2,7 +2,7 @@ import { Client, Message } from "discord.js";
 
 
 export interface BangCommand{
-    name:string,
+    name:string,    //command required to run it
     description:string,
     type:string,
     usage:string,

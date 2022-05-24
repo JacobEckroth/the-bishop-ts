@@ -24,7 +24,7 @@ export const Latex: BangCommand = {
             if(!found){
                 sendMessage = null;
             }else{
-                sendMessage = await getLatexUrl(found[2]);    //gets an image url from an api
+                sendMessage = await getLatexUrl(found[2].replace(/(`|```(tex)?)/, ''));    //gets an image url from an api
             }
           
             if(!sendMessage){   //if request failed, getLatexUrl returns null.
